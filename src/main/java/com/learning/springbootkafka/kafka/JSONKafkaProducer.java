@@ -21,14 +21,16 @@ public class JSONKafkaProducer {
         this.kafkaTemplate = kafkaTemplate;
     }
 
-    public void sendMessage(UserDTO userDTO) {
+    public String sendMessage(UserDTO userDTO) {
         LOGGER.info(String.format("Message sent -> %s", userDTO.toString()));
 
         Message<UserDTO> message = MessageBuilder
                 .withPayload(userDTO)
-                .setHeader(KafkaHeaders.TOPIC, KafkaConstants.TOPIC_NAME)
+                .setHeader(KafkaHeaders.TOPIC, KafkaConstants.JSON_TOPIC)
                 .build();
 
         kafkaTemplate.send(message);
+
+        return String.format("JSON message sent to Kafka Topic %s -> %s", KafkaConstants.TOPIC_NAME, userDTO.toString());
     }
 }
