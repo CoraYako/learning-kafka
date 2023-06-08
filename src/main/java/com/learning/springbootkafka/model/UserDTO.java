@@ -1,13 +1,15 @@
 package com.learning.springbootkafka.model;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
-@Data
-@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
 public class UserDTO {
 
-    private Long id;
+    private Integer id;
     private String firstName;
     private String lastName;
 }
